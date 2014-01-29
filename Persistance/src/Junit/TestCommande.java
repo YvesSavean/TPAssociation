@@ -8,9 +8,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.junit.Test;
-import org.junit.Test;
-
-import Bean.Adherent;
 import Bean.Commande;
 
 public class TestCommande {

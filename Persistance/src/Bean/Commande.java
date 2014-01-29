@@ -1,12 +1,11 @@
 package Bean;
 
 import java.util.Date;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="COMMANDE", schema="DerbyBDDAssociation")
+@Table(name="COMMANDE", schema="APP")
 public class Commande {
 	
 	@Id
