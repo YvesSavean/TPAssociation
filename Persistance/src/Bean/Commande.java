@@ -1,0 +1,61 @@
+package Bean;
+
+import java.util.Date;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
+@Table(name="COMMANDE", schema="DerbyBDDAssociation")
+public class Commande {
+	
+	@Id
+	@NotNull
+	@Column(name="ID")
+	private Integer id;
+	
+	@NotNull
+	@Column(name="DATECOMMANDE")
+	private Date dateCommande;
+	
+	@ManyToOne
+	@JoinColumn(name = "ADHERENT")
+	private Adherent lAdherent;
+	
+	public Commande(Integer id, Date dateCommande, Adherent lAdherent) {
+		super();
+		this.id = id;
+		this.dateCommande = dateCommande;
+		this.lAdherent = lAdherent;
+	}
+
+	public Commande() {
+		super();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer i) {
+		this.id = i;
+	}
+
+	public Date getDateCommande() {
+		return dateCommande;
+	}
+
+	public void setDateCommande(Date dateCommande) {
+		this.dateCommande = dateCommande;
+	}
+
+	public Adherent getlAdherent() {
+		return lAdherent;
+	}
+
+	public void setlAdherent(Adherent lAdherent) {
+		this.lAdherent = lAdherent;
+	}
+}
