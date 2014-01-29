@@ -3,40 +3,54 @@ package Bean;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
-@Table(name="ADHERENT", schema="ROOT")
+@Table(name="ADHERENT", schema="DerbyBDDAssociation")
 public class Adherent {
 	
 	@Id
-	@NotNull
+	@NotBlank @Size(min=1, max=30)
 	@Column(name="IDENTIFIANT")
-	private int identifiant;
+	private String identifiant;
 	
-	@NotNull @Size(min=1, max=20)
+	@NotBlank @Size(min=1, max=20)
 	@Column(name="MOTDEPASSE")
 	private String motDePasse;
 	
-	@NotNull @Size(min=1, max=30)
+	@NotBlank @Size(min=1, max=30)
 	@Column(name="NOMDEFAMIlLE")
 	private String nomDeFamille;
 	
-	@NotNull @Size(min=1, max=30)
+	@NotBlank @Size(min=1, max=30)
 	@Column(name="PRENOM")
-	private int prenom;
+	private String prenom;
 	
-	@NotNull @Size(min=1, max=50)
+	@Size(min=1, max=50)
 	@Column(name="ADRESSE")
+	private String Adresse;
+	
+	@Size(min=1, max=50)
+	@Column(name="COMPLEMENTADRESSE")
+	private String complementAdresse;
+	
+	@Size(max=5)
+	@Column(name="CODEPOSTAL")
 	private String codePostal;
 	
-	@NotNull @Size(min=1, max=30)
+	@Size(max=30)
 	@Column(name="VILLE")
 	private String ville;
 	
-	public int getIdentifiant() {
+	@Size(max=30)
+	@Column(name="PAYS")
+	private String pays;
+	
+	public String getIdentifiant() {
 		return identifiant;
 	}
 
-	public void setIdentifiant(int identifiant) {
+	public void setIdentifiant(String identifiant) {
 		this.identifiant = identifiant;
 	}
 
@@ -56,11 +70,27 @@ public class Adherent {
 		this.nomDeFamille = nomDeFamille;
 	}
 
-	public int getPrenom() {
+	public String getPrenom() {
 		return prenom;
 	}
 
-	public void setPrenom(int prenom) {
+	public String getAdresse() {
+		return Adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		Adresse = adresse;
+	}
+
+	public String getComplementAdresse() {
+		return complementAdresse;
+	}
+
+	public void setComplementAdresse(String complementAdresse) {
+		this.complementAdresse = complementAdresse;
+	}
+
+	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 
@@ -88,23 +118,26 @@ public class Adherent {
 		this.pays = pays;
 	}
 
-	@Column(name="PAYS")
-	private String pays;
 
 	public Adherent() {
 		super();
 	}
 
-	public Adherent(int identifiant, String motDePasse, String nomDeFamille,
-			int prenom, String codePostal, String ville, String pays) {
+	public Adherent(String identifiant, String motDePasse, String nomDeFamille,
+			String prenom, String adresse, String complementAdresse,
+			String codePostal, String ville, String pays) {
 		super();
 		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
 		this.nomDeFamille = nomDeFamille;
 		this.prenom = prenom;
+		Adresse = adresse;
+		this.complementAdresse = complementAdresse;
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.pays = pays;
 	}
+
+
 	
 }
