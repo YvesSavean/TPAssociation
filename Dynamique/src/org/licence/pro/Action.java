@@ -35,6 +35,18 @@ public class Action extends HttpServlet {
 	}
 	
 	private void process(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		/*Gestion des session*/
+		//Si on vient de remplir le formulaire
+		System.out.println(request.getParameter("login") + request.getParameter("mdp"));
+		if ((request.getParameter("login")!=null) && (request.getParameter("mdp") != null)) {
+			if ((!request.getParameter("login").equals("")) && (!request.getParameter("mdp").equals(""))) {
+			//TODO:A partir du jpa ici il faudra vérifié si la personne existe
+			//On enregistre en session un attribut "login" cela signifie que la personne est connéecté
+			request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
+			}
+		}else{
+			request.getSession().invalidate();
+		}
 		getServletContext().getRequestDispatcher("/part/template.jsp").forward(request, response);
 	}
 	

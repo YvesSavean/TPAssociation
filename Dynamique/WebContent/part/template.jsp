@@ -10,13 +10,13 @@
 </head>
 <body>
 	<%-- Template de vue: va en fonction de parametre afficher tel ou tel portion de page--%>
-	<%if (request.getSession(false) != null && request.getSession(false).getAttribute("login") != null ){%>
-	<%-- Si parametre création : chargement de AddAccount.jsp --%>
-	
+	<%if ((request.getSession(false) != null) && (request.getSession(false).getAttribute("login") != null)){%>
+		<jsp:include page="/part/accueil.jsp" /> 
 	<%-- On vérifie l'existence d'un parametre page --%>
 	<%-- Si non page d'acceuil --%>
 	<%-- Si oui on choisit la page indiqué --%>
 	<%}else{ %>
+	<%-- Si parametre création : chargement de AddAccount.jsp --%>
 	<%-- Cas session login inexistante: chargement de login.jsp --%>
 		<jsp:include page="/part/login.jsp" /> 
 	<%} %>
