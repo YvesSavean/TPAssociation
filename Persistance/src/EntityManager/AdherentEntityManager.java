@@ -1,4 +1,4 @@
-package Connexion;
+package EntityManager;
 
 import java.util.List;
 
