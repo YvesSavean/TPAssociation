@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="ADHERENT", schema="APP")
+@Table(name="ADHERENT", schema="DerbyBDDAssociation")
 public class Adherent {
 	
 	@Id
