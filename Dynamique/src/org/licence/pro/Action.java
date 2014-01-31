@@ -44,27 +44,34 @@ public class Action extends HttpServlet {
 			//On enregistre en session un attribut "login" cela signifie que la personne est connéecté
 			request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
 			}
-		//Si l'on a appuyé sur le bouton de déconnexion
-		}else if(request.getParameter("logout")!=null){
+		}
+		System.out.println(request.getParameter("logout"));
+		if(request.getParameter("logout")!=null){
+			System.out.println("Déconnexion");
 			request.getSession().invalidate();
 		}
 		
 		/*Gestion des pages*/
+		//Suivant le chemin retourné par le template on va crée un attribut page que le template utilisera pour savoir quoi choisir
+		//les href du menu seront comme cela /action et on les récuperera avec les methode get path...
 		System.out.println(request.getPathInfo());
 		if(request.getPathInfo() != null){
 			request.setAttribute("Page", request.getPathInfo());
-			System.out.println(request.getPathInfo());
 		}
-		//TODO: Suivant le chemin retourné par le template on va crée un attribut page que le template utilisera pour savoir quoi choisir
-		//TODO: les href du menu seront comme cela /action et on les récuperera avec les methode get path...
+		
 		
 		/*Gestion des données*/
 		//TODO: suivant la page visé on affichera certaine donnée issue de l'appelle des méthode de la JPA 
 		
 		/*Gestion des actions*/
-		//TODO: L'ensemble des actions particuliéres (création porfile,ajout article seront traité ici).
+		//L'ensemble des actions particuliéres (création porfile,ajout article seront traité ici).
+		if(request.getParameter("Create")!=null){
+			System.out.println("Création compte");
+			//TODO : JPA ajout d'un compte dans le bdd
+		}
 		
 		
-		getServletContext().getRequestDispatcher("/part/template.jsp").forward(request, response);
+		
+		getServletContext().getRequestDispatcher("/template.jsp").forward(request, response);
 	}
 }
