@@ -19,4 +19,8 @@
     <servlet-name>Action</servlet-name>
     <url-pattern>/Action</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>Action</servlet-name>
+    <url-pattern>/Action/*</url-pattern>
+  </servlet-mapping>
 </web-app>

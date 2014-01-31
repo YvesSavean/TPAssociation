@@ -7,4 +7,4 @@
 		    <p>Mdp:<input type="password" name="mdp" id="mdp" ><p>
 		    <p><input type="submit" value="OK" /><p>
 	</form>
-	<p>Pas encore inscrit? <a href='?page=newprofile'>Crée votre compte ici!</a>
+	<p>Pas encore inscrit? <a href='<%=getServletContext().getContextPath()%>/Action/newAccount'>Crée votre compte ici!</a>
