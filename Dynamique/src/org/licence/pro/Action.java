@@ -1,10 +1,14 @@
 package org.licence.pro;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import Bean.Adherent;
+import EntityManager.AdherentEntityManager;
 
 /**
  * Servlet implementation class Action
@@ -12,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Action extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/**Listes des objets pour l'acces aux données*/
+	private AdherentEntityManager adherentManagers;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -20,6 +26,12 @@ public class Action extends HttpServlet {
         super();
     }
 
+    /**
+     * Initalisation des données
+     */
+    public void init(){
+    	AdherentEntityManager adherentManagers = new AdherentEntityManager();
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -36,15 +48,27 @@ public class Action extends HttpServlet {
 	
 	private void process(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
+		/*Chargement des objets pour acceder aux données*/
+		init();
+		
 		/*Gestion des session*/
 		//Si on vient de remplir le formulaire de connection
 		if ((request.getParameter("login")!=null) && (request.getParameter("mdp") != null)) {
-			if ((!request.getParameter("login").equals("")) && (!request.getParameter("mdp").equals(""))) {
-			//TODO:A partir du jpa ici il faudra vérifié si la personne existe
-			//On enregistre en session un attribut "login" cela signifie que la personne est connéecté
-			request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
-			}
+			if( adherentManagers.trouver(request.getParameter("login"))!= null){
+				Adherent ad = adherentManagers.trouver(request.getParameter("login"));
+				//Vérifier le mdp
+				if (request.getParameter("mdp").equals(ad.getMotDePasse())){
+					//On enregistre en session un attribut "login" cela signifie que la personne est connecté
+					request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
+				}else{
+					request.setAttribute("Erreur", "Mdp incorrect");	
+				}
+			}else{
+				//On rajute dans un paramêtre un message d'erreur
+				request.setAttribute("Erreur", "Identifiant inconnu");
+			}			
 		}
+		
 		System.out.println(request.getParameter("logout"));
 		if(request.getParameter("logout")!=null){
 			System.out.println("Déconnexion");

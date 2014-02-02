@@ -14,7 +14,7 @@ public class ArticleEntityManager {
 	private EntityManager em ;
 	
 	public  ArticleEntityManager(){
-		emf = Persistence.createEntityManagerFactory("Persistance");
+		emf = Persistence.createEntityManagerFactory("Persistence");
 		em = (EntityManager) emf.createEntityManager();
 	}
 	

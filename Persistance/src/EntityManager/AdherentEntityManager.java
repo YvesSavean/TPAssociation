@@ -15,15 +15,15 @@ public class AdherentEntityManager  {
 		em = (EntityManager) emf.createEntityManager();
 	}
 	
-	public Adherent trouver(int id){
-		return em.find(Adherent.class, id);
+	public Adherent trouver(String string){
+		return em.find(Adherent.class, string);
 	}
 	
 	public void supprimer(Adherent lAdherent){
 		em.remove(lAdherent);
 	}
 	
-	public void supprimer(int id){
+	public void supprimer(String id){
 		em.remove(id);
 	}
 	

@@ -3,6 +3,7 @@
 	<name>Dynamique</name>
 	<comment></comment>
 	<projects>
+		<project>Persistance</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

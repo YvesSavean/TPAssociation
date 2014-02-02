@@ -1,6 +1,7 @@
 package Bean;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -50,7 +51,7 @@ public class Adherent {
 	
 	@OneToMany
 	@JoinColumn(name = "COMMANDE")
-	private HashMap<Integer,Commande> lesCommandes;
+	private Set<Commande> lesCommandes;
 	
 	public String getIdentifiant() {
 		return identifiant;
@@ -59,7 +60,7 @@ public class Adherent {
 	public Adherent(String identifiant, String motDePasse, String nomDeFamille,
 			String prenom, String adresse, String complementAdresse,
 			String codePostal, String ville, String pays,
-			HashMap<Integer, Commande> lesCommandes) {
+			Set<Commande> lesCommandes) {
 		super();
 		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
@@ -73,11 +74,11 @@ public class Adherent {
 		this.lesCommandes = lesCommandes;
 	}
 
-	public HashMap<Integer, Commande> getLesCommandes() {
+	public Set<Commande> getLesCommandes() {
 		return lesCommandes;
 	}
 
-	public void setLesCommandes(HashMap<Integer, Commande> lesCommandes) {
+	public void setLesCommandes(Set<Commande> lesCommandes) {
 		this.lesCommandes = lesCommandes;
 	}
 
