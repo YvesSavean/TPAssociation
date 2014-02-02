@@ -12,7 +12,7 @@
 	<%-- Template de vue--%>
 	<%-- Gestion de erreurs: si une erreur existe alors on a affiche une pop-up d'information --%>
 	<%if (request.getAttribute("Erreur")!=null){ %>
-		<script type=\"text/javascript\">alert("+ <%= request.getAttribute("Erreur") %> +");</script>
+		<script type="text/javascript">alert("<%= request.getAttribute("Erreur") %>");</script>
 	<% } %>
 	<%-- C'est au template de determiner quel portion de page montrer suivant que l'on est co ou non --%>
 	<%--Si l'utilisateur est connecté --%>

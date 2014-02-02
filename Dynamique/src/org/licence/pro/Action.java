@@ -30,7 +30,7 @@ public class Action extends HttpServlet {
      * Initalisation des données
      */
     public void init(){
-    	AdherentEntityManager adherentManagers = new AdherentEntityManager();
+    	adherentManagers = new AdherentEntityManager();
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,29 +54,32 @@ public class Action extends HttpServlet {
 		/*Gestion des session*/
 		//Si on vient de remplir le formulaire de connection
 		if ((request.getParameter("login")!=null) && (request.getParameter("mdp") != null)) {
-			if( adherentManagers.trouver(request.getParameter("login"))!= null){
-				Adherent ad = adherentManagers.trouver(request.getParameter("login"));
-				//Vérifier le mdp
-				if (request.getParameter("mdp").equals(ad.getMotDePasse())){
-					//On enregistre en session un attribut "login" cela signifie que la personne est connecté
-					request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
+			if(adherentManagers != null){
+				if( adherentManagers.trouver(request.getParameter("login"))!= null){
+					Adherent ad = adherentManagers.trouver(request.getParameter("login"));
+					//Vérifier le mdp
+					if (request.getParameter("mdp").equals(ad.getMotDePasse())){
+						//On enregistre en session un attribut "login" cela signifie que la personne est connecté
+						request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
+					}else{
+						request.setAttribute("Erreur", "Mdp incorrect");	
+					}
 				}else{
-					request.setAttribute("Erreur", "Mdp incorrect");	
-				}
+					//On rajute dans un paramêtre un message d'erreur
+					request.setAttribute("Erreur", "Identifiant inconnu");
+				}		
 			}else{
-				//On rajute dans un paramêtre un message d'erreur
-				request.setAttribute("Erreur", "Identifiant inconnu");
-			}			
+				request.setAttribute("Erreur", "Probléme avec la BDD");
+			}
 		}
 		
-		System.out.println(request.getParameter("logout"));
 		if(request.getParameter("logout")!=null){
 			System.out.println("Déconnexion");
 			request.getSession().invalidate();
 		}
 		
 		/*Gestion des pages*/
-		//Suivant le chemin retourné par le template on va crée un attribut page que le template utilisera pour savoir quoi choisir
+		//Suivant le chemin retourné par le template on va créer un attribut page que le template utilisera pour savoir quoi choisir
 		//les href du menu seront comme cela /action et on les récuperera avec les methode get path...
 		System.out.println(request.getPathInfo());
 		if(request.getPathInfo() != null){
