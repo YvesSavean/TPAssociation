@@ -62,6 +62,7 @@ public class Action extends HttpServlet {
 					if (request.getParameter("mdp").equals(ad.getMotDePasse())){
 						//On enregistre en session un attribut "login" cela signifie que la personne est connecté
 						request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
+						System.out.println("Connecter");	
 					}else{
 						request.setAttribute("Erreur", "Mdp incorrect");	
 					}
@@ -82,7 +83,6 @@ public class Action extends HttpServlet {
 		/*Gestion des pages*/
 		//Suivant le chemin retourné par le template on va créer un attribut page que le template utilisera pour savoir quoi choisir
 		//les href du menu seront comme cela /action et on les récuperera avec les methode get path...
-		System.out.println(request.getPathInfo());
 		if(request.getPathInfo() != null){
 			request.setAttribute("Page", request.getPathInfo());
 		}
@@ -98,6 +98,13 @@ public class Action extends HttpServlet {
 			//TODO : JPA ajout d'un compte dans le bdd
 		}
 		getServletContext().getRequestDispatcher("/template.jsp").forward(request, response);
+		
+		//TODO:Convertir template en JSTL
+		//TODO:Finir les templates (utiliser JSTL + EL)
+		//TODO:Améliorer comportement site: liens par défault + bloquer acces jsp
+		//TODO:JPA
+		//TODO:Test HttpUnit
+		//TODO:Csss
 	}
 	
 }
