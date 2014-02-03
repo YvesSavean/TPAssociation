@@ -37,7 +37,6 @@ public class Action extends HttpServlet {
 	private void process(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		/*Gestion des session*/
 		//Si on vient de remplir le formulaire
-		System.out.println(request.getParameter("login") + request.getParameter("mdp"));
 		if ((request.getParameter("login")!=null) && (request.getParameter("mdp") != null)) {
 			if ((!request.getParameter("login").equals("")) && (!request.getParameter("mdp").equals(""))) {
 			//TODO:A partir du jpa ici il faudra vérifié si la personne existe
@@ -50,9 +49,10 @@ public class Action extends HttpServlet {
 		getServletContext().getRequestDispatcher("/part/template.jsp").forward(request, response);
 	}
 	
+	//TODO:Scénario à faire
 	//TODO:Template des pages (priorité pour le login) +css
 	//TODO:Gestion des connections
 	//TODO:Gestion de la navigation (parametre page)
-	//TODO:Gestion de données en important JPA
+	//TODO:Gestion de données en important JPA (appeller les méthodes de requetes de la jpa).
 
 }
