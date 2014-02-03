@@ -36,6 +36,7 @@ public class AdherentEntityManager  {
 	}
 	
 	public List<Adherent> ChercherAdherents(){
+		/* ce n'est pas du SQL mais du HQL d'Hibernate */
 		Query query = em.createQuery("from Adherent ");
 		return query.getResultList();
 	}
