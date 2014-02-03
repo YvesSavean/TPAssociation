@@ -49,14 +49,11 @@ public class Action extends HttpServlet {
 	private void process(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		
 		/*Chargement des objets pour acceder aux données*/
-		init();
-		
+		init();	
 		/*Gestion des session*/
-<<<<<<< HEAD
 		//Si on vient de remplir le formulaire
-=======
 		//Si on vient de remplir le formulaire de connection
->>>>>>> d8951848a894393b4234f690599836e4cc3a70bc
+
 		if ((request.getParameter("login")!=null) && (request.getParameter("mdp") != null)) {
 			if(adherentManagers != null){
 				if( adherentManagers.trouver(request.getParameter("login"))!= null){
@@ -100,19 +97,7 @@ public class Action extends HttpServlet {
 			System.out.println("Création compte");
 			//TODO : JPA ajout d'un compte dans le bdd
 		}
-		
-		
-		
 		getServletContext().getRequestDispatcher("/template.jsp").forward(request, response);
 	}
-<<<<<<< HEAD
 	
-	//TODO:Scénario à faire
-	//TODO:Template des pages (priorité pour le login) +css
-	//TODO:Gestion des connections
-	//TODO:Gestion de la navigation (parametre page)
-	//TODO:Gestion de données en important JPA (appeller les méthodes de requetes de la jpa).
-
-=======
->>>>>>> d8951848a894393b4234f690599836e4cc3a70bc
 }
