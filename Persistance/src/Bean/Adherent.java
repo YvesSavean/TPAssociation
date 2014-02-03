@@ -2,15 +2,19 @@ package Bean;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.MapKeyJoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="ADHERENT", schema="app")
+@Table(name="ADHERENT", schema="SONY")
 public class Adherent {
 	
 	@Id
@@ -63,6 +67,7 @@ public class Adherent {
 			String codePostal, String ville, String pays,
 			HashMap<Integer, Commande> lesCommandes) {
 		super();
+		
 		this.identifiant = identifiant;
 		this.motDePasse = motDePasse;
 		this.nomDeFamille = nomDeFamille;

@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="COMMANDE", schema="DerbyBDDAssociation")
+@Table(name="COMMANDE", schema="SONY")
 public class Commande {
 	
 	@Id

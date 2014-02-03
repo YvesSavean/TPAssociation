@@ -36,9 +36,13 @@ public class AdherentEntityManager  {
 	}
 	
 	public List<Adherent> ChercherAdherents(){
-		Query query = em.createQuery("select * from ADHERENT");
+		Query query = em.createQuery("from Adherent ");
 		return query.getResultList();
 	}
 	
+	public void close(){
+		em.close();
+		emf.close();
+	}
 
 }

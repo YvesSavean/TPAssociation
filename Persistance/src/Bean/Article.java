@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="ARTICLE", schema="DerbyBDDAssociation")
+@Table(name="ARTICLE", schema="SONY")
 public class Article {
 	@Id
 	@NotBlank @Size(min=1, max=10)
