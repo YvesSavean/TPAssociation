@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+pageEncoding="ISO-8859-1"%>
     
 	<h1>Login</h1>
 	<form action="" method="post" id="formLogin" >
@@ -7,4 +7,4 @@
 		    <p>Mdp:<input type="password" name="mdp" id="mdp" ><p>
 		    <p><input type="submit" value="OK" /><p>
 	</form>
-	<p>Pas encore inscrit? <a href='?page=newprofile'>Crée votre compte ici!</a>
+	<p>Pas encore inscrit? <a href='<%=getServletContext().getContextPath()%>/Action/newAccount'>Crée votre compte ici!</a>

@@ -13,3 +13,4 @@ puis new Derby sur eclipse perspective Database Development >
   port : 1527
   login : sony
   mdp : sony
+  schéma : sony
