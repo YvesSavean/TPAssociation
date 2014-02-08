@@ -116,6 +116,7 @@ public class Action extends HttpServlet {
 			//TODO : Vérifier que le champ code postal est correct (optionel)
 			//TODO : Si ok, JPA ajout d'un compte dans le bdd
 		}
+		//Cas on annule le création d'un compte
 		//Cas on supprime les commandes
 		if(request.getParameter("annulerCmd")!=null){
 			System.out.println("Annuler commande");
@@ -137,11 +138,11 @@ public class Action extends HttpServlet {
 		//Convertir template en JSTL OK
 		//Finir les templates (utiliser JSTL + EL) OK
 		//TODO:Améliorer site: 
-			//liens par défault
-			//bloquer accées direct jsp
-			//bouton annuler dans crée compte
-			//navagation pas génial
+			//TODO:Liens par défault
+			//Bloquer accées direct jsp OK
+			//Bouton annuler dans crée compte OK
 		//JPA: mise en place de la structure OK
+		//TODO:Compeleter code JPA créer compte
 		//TODO:Test HttpUnit optionel
 		//TODO:Css optionel
 		

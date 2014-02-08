@@ -3,11 +3,11 @@
 <body>
 	<h1>Creation de compte</h1>
 	<!--Création du formulaire-->
-	<form action="" method="post" id="formLogin" >
+	<form action="<%=getServletContext().getContextPath()%>/Action" method="post">
 		<table>
 			<tr>
 				<td>Indentifiant</td>
-				<td><input type="text" name="newLogin" id="newlogin" required/></td>
+				<td><input type="text" name="newLogin" required/></td>
 			</tr>
 			<tr>
 				<td>Mot de passe</td>
@@ -51,6 +51,7 @@
 			</tr>
 			<tr>
 				<td><input type="submit" name="newCreate" value="Enregistrer"/></td>
+				<td><a href='<%=getServletContext().getContextPath()%>/Action'>Retour</a></td>
 			</tr>
 		</table>
 	</form>

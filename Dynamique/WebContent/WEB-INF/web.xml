@@ -9,6 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <security-constraint>
+   <web-resource-collection>
+     <web-resource-name>no_access</web-resource-name>
+     <url-pattern>*.jsp</url-pattern>
+   </web-resource-collection>
+   <auth-constraint/>
+  </security-constraint>
   <servlet>
     <description></description>
     <display-name>Action</display-name>
