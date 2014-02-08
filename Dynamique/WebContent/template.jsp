@@ -18,38 +18,42 @@
 	
 	<%--Si l'utilisateur est connecté --%>
 	<c:choose>
-		<!-- Faire un c:out -->
-		<c:when test="${!empty sessionScope} && ${!empty sessionScope.login}">
-		<%--if ((request.getSession(false) != null) && (request.getSession(false).getAttribute("login") != null)){--%>
+		<c:when test="${! empty sessionScope && ! empty sessionScope.login}">
 			
 			<%-- On charge le menu --%>
 			<jsp:include page="/part/menu.jsp" /> 
 			<%-- On vérifie l'existence d'un parametre page --%>
-			<% if (request.getAttribute("Page")==null){ %>
-				<%-- Si non page d'acceuil --%>
-				<jsp:include page="/part/accueil.jsp" /> 
-				<%-- Si oui on choisit la page indiqué --%>
-			<%}else{%>
-				<jsp:include page="/part${Page}.jsp" /> 
-				<%--Chaque partie de template devra vérifier l'existence de certain attribut pour voir si il dispose des données --%>
-			<% } %>
-			
+			<c:choose>
+				<c:when test="${empty Page}" >
+					<%-- Si non page d'acceuil --%>
+					<jsp:include page="/part/accueil.jsp" /> 
+					<%-- Si oui on choisit la page indiqué --%>
+				</c:when>
+  				<c:otherwise>
+					<jsp:include page="/part${Page}.jsp" /> 
+					<%--Chaque partie de template devra vérifier l'existence de certain attribut pour voir si il dispose des données --%>
+				</c:otherwise>
+			</c:choose>			
+	
 		<%--Si l'utilisateur n'est pas connecté --%>
-		
 		</c:when>
   		<c:otherwise>
-		
+  		
 			<%--Si on a choisit de créer un compte: on affiche la page de création d'un compte --%>
-			<% if (request.getAttribute("Page")!=null && request.getAttribute("Page").equals("/newAccount")){ %>
-				<jsp:include page="/part${Page}.jsp" /> 
-			<%--Sinon --%>
-			<% }else{ %>
-				<jsp:include page="/part/login.jsp" /> 
-				<%-- Gestion de erreurs: si une erreur existe alors on a affiche une pop-up d'information --%>
-				<%if (request.getAttribute("Erreur")!=null){ %>
-					<script type="text/javascript">alert("<%= request.getAttribute("Erreur") %>");</script>
-				<% } %>
-			<% } %>
+			<c:choose>
+				<c:when test="${!empty Page && Page == '/newAccount'}">
+					<jsp:include page="/part${Page}.jsp" /> 
+				</c:when>
+				<%--Sinon --%>
+  				<c:otherwise>
+					<jsp:include page="/part/login.jsp" /> 
+					<%-- Gestion de erreurs: si une erreur existe alors on a affiche une pop-up d'information --%>
+					<c:if test="${!empty Erreur}">
+						<script type="text/javascript">alert("${Erreur}");</script>
+					</c:if>
+				</c:otherwise>
+			</c:choose>	
+			
 		</c:otherwise>
 	</c:choose>	
 </body>

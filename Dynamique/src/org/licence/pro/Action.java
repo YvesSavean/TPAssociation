@@ -62,21 +62,19 @@ public class Action extends HttpServlet {
 					if (request.getParameter("mdp").equals(ad.getMotDePasse())){
 						//On enregistre en session un attribut "login" cela signifie que la personne est connecté
 						request.getSession(true).setAttribute("login", new String(request.getParameter("login")));
-						System.out.println("Connecter");	
 					}else{
-						request.setAttribute("Erreur", "Mdp incorrect");	
+						request.setAttribute("Erreur", "Connection refusé:  Mdp incorrect");	
 					}
 				}else{
 					//On rajute dans un paramêtre un message d'erreur
-					request.setAttribute("Erreur", "Identifiant inconnu");
+					request.setAttribute("Erreur", "Connection refusé: Identifiant inconnu");
 				}		
 			}else{
-				request.setAttribute("Erreur", "Probléme avec la BDD");
+				request.setAttribute("Erreur", "Connection refusé: Probléme avec la BDD");
 			}
 		}
 		
 		if(request.getParameter("logout")!=null){
-			System.out.println("Déconnexion");
 			request.getSession().invalidate();
 		}
 		
@@ -99,12 +97,12 @@ public class Action extends HttpServlet {
 		}
 		getServletContext().getRequestDispatcher("/template.jsp").forward(request, response);
 		
-		//TODO:Convertir template en JSTL
-		//TODO:Finir les templates (utiliser JSTL + EL)
-		//TODO:Améliorer comportement site: liens par défault + bloquer acces jsp
-		//TODO:JPA
-		//TODO:Test HttpUnit
-		//TODO:Csss
+		//Convertir template en JSTL OK
+		//TODO:Finir les templates (utiliser JSTL + EL) 
+		//TODO:Améliorer comportement site: liens par défault + bloquer accées direct jsp
+		//TODO:JPA: mise en place de la structure
+		//TODO:Test HttpUnit optionel
+		//TODO:Csss optionel
 	}
 	
 }
