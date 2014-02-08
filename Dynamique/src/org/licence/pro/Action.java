@@ -87,22 +87,64 @@ public class Action extends HttpServlet {
 		
 		
 		/*Gestion des données*/
-		//TODO: suivant la page visé on affichera certaine donnée issue de l'appelle des méthode de la JPA 
+		//On vérifie la page que l'on a visé
+		if(request.getAttribute("Page")!= null){
+			if (request.getAttribute("Page").equals("/commande")){
+				System.out.println("Liste Commande");
+				//TODO:Crée une liste de type commandes_articles
+				//TODO:En utilisant la persistance appeller une méthode qui renvoit pour un id adhérent l'ensemble des articles commandés
+				//TODO:Pour chaque id d'article récuperer trouver son nom et prenom avec l'appel d'une méthode de jpa
+				//TODO: On enregistre dans une liste
+				//TODO:Si pas null alors on enregistre cette liste dans un attribut
+			}
+			if (request.getAttribute("Page").equals("/articles")){
+				System.out.println("Liste Articles");
+				//TODO:Crée une liste de type commandes_articles
+				//TODO:En utilisant la persistance appeller une méthode qui renvoit tout les articles disponibles
+				//TODO:On enregistre dans une liste
+				//TODO:Si pas null alors on enregistre cette liste dans un attribut
+			}
+		}
 		
 		/*Gestion des actions*/
 		//L'ensemble des actions particuliéres (création porfile,ajout article seront traité ici).
-		if(request.getParameter("Create")!=null){
+		//Cas on crée un compte page newAccount 
+		if(request.getParameter("newCreate")!=null){
 			System.out.println("Création compte");
-			//TODO : JPA ajout d'un compte dans le bdd
+			//TODO : Vérifier que les champs obligatoire sont remplit
+			//TODO : Vérifier que les mdp sont indentiques
+			//TODO : Vérifier que le champ code postal est correct (optionel)
+			//TODO : Si ok, JPA ajout d'un compte dans le bdd
 		}
+		//Cas on supprime les commandes
+		if(request.getParameter("annulerCmd")!=null){
+			System.out.println("Annuler commande");
+			//TODO: Supression de la liste des commandes pour un adhérent donnée renvoit une liste de code des articles supprimés
+			//TODO: Maj du stock des articles indiqués en parametre
+		}
+		//Cas on rajoute une commande
+		if(request.getParameter("addCmd")!=null){
+			System.out.println("Ajout article dans commande");
+			//TODO:Vérifier que le stock articles n'est pas null: methode checkArticle(int idarticle)
+			//TODO:Si true : message d'erreur sinon on appelle une méthode addArtcle (id Adehrent, id article) qui rajoute l'article dans la liste des commandes de l'adherent
+		}
+		
+		
+		
+		//Appel du template
 		getServletContext().getRequestDispatcher("/template.jsp").forward(request, response);
 		
 		//Convertir template en JSTL OK
-		//TODO:Finir les templates (utiliser JSTL + EL) 
-		//TODO:Améliorer comportement site: liens par défault + bloquer accées direct jsp
-		//TODO:JPA: mise en place de la structure
+		//Finir les templates (utiliser JSTL + EL) OK
+		//TODO:Améliorer site: 
+			//liens par défault
+			//bloquer accées direct jsp
+			//bouton annuler dans crée compte
+			//navagation pas génial
+		//JPA: mise en place de la structure OK
 		//TODO:Test HttpUnit optionel
-		//TODO:Csss optionel
+		//TODO:Css optionel
+		
 	}
 	
 }

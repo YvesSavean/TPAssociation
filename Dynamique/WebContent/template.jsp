@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -47,14 +47,14 @@
 				<%--Sinon --%>
   				<c:otherwise>
 					<jsp:include page="/part/login.jsp" /> 
-					<%-- Gestion de erreurs: si une erreur existe alors on a affiche une pop-up d'information --%>
-					<c:if test="${!empty Erreur}">
-						<script type="text/javascript">alert("${Erreur}");</script>
-					</c:if>
 				</c:otherwise>
 			</c:choose>	
-			
 		</c:otherwise>
 	</c:choose>	
+	
+	<%-- Gestion de erreurs: si une erreur existe alors on a affiche une pop-up d'information --%>
+	<c:if test="${!empty Erreur}">
+		<script type="text/javascript">alert("${Erreur}");</script>
+	</c:if>
 </body>
 </html>
