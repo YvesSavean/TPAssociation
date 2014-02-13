@@ -27,12 +27,6 @@ public class AdherentEntityManager {
 		t.commit();
 	}
 
-	public void supprimer(String id) {
-		t.begin();
-			em.remove(id);
-		t.commit();
-	}
-
 	public void creer(Adherent lAdherent) {
 		t.begin();
 			em.persist(lAdherent);
