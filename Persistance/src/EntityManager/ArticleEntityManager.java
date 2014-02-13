@@ -49,7 +49,7 @@ public class ArticleEntityManager {
 		t.commit();
 	}
 	
-	public List<Article> ChercherAdherents(){
+	public List<Article> ChercherArticles(){
 		Query query = em.createQuery("from Article");
 		return query.getResultList();
 	}

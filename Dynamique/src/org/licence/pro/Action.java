@@ -108,7 +108,7 @@ public class Action extends HttpServlet {
 				//Crée une liste de type commandes_articles
 				List<Article> articles = new ArrayList<Article>();
 				//En utilisant la persistance appeller une méthode qui renvoit tout les articles disponibles
-				articles = articleManagers.ChercherAdherents();
+				articles = articleManagers.ChercherArticles();
 				//Si pas null ou vide alors on enregistre cette liste dans un attribut
 				if(articles != null && !articles.isEmpty()){
 					request.setAttribute("articles", articles);
