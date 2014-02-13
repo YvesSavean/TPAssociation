@@ -11,11 +11,11 @@
 			</tr>
 			<tr>
 				<td>Mot de passe</td>
-				<td><input type="text" name="mdp" required/></td>
+				<td><input type="password" name="mdp" required/></td>
 			</tr>
 			<tr>
 				<td>Mot de Passe (Confirmation)</td>
-				<td><input type="text" name="mdpconfirm" required/></td>
+				<td><input type="password" name="mdpconfirm" required/></td>
 			</tr>
 			<tr>
 				<td>Nom:</td>
@@ -30,12 +30,16 @@
 				<td><input type="text" name="newAdresse" required/></td>
 			</tr>
 			<tr>
+				<td>Complement Adresse:</td>
+				<td><input type="text" name="newCompAdresse"/></td>
+			</tr>
+			<tr>
 				<td>Code Postal:</td>
-				<td><input type="text" name="newCodepostal" /></td>
+				<td><input type="text" name="newCodepostal" required/></td>
 			</tr>
 			<tr>
 				<td>Ville:</td>
-				<td><input type="text" name="newVille" /></td>
+				<td><input type="text" name="newVille" required/></td>
 			</tr>
 			<tr>
 				<td>Pays:</td>

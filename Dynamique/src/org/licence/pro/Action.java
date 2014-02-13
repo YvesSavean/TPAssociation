@@ -110,11 +110,45 @@ public class Action extends HttpServlet {
 		//L'ensemble des actions particuliéres (création porfile,ajout article seront traité ici).
 		//Cas on crée un compte page newAccount 
 		if(request.getParameter("newCreate")!=null){
-			System.out.println("Création compte");
-			//TODO : Vérifier que les champs obligatoire sont remplit
-			//TODO : Vérifier que les mdp sont indentiques
-			//TODO : Vérifier que le champ code postal est correct (optionel)
-			//TODO : Si ok, JPA ajout d'un compte dans le bdd
+			//Vérifier que les champs obligatoire sont remplit (cas ou le html5 avec required ne marche pas sur le navigateur)
+			if ((!request.getParameter("newLogin").equals("")) && (!request.getParameter("mdp").equals("")) 
+					&& (!request.getParameter("mdpconfirm").equals("")) && (!request.getParameter("newNom").equals(""))
+					&& (!request.getParameter("newPrenom").equals("")) && (!request.getParameter("newAdresse").equals(""))
+					&& (!request.getParameter("newCodepostal").equals("")) && (!request.getParameter("newVille").equals(""))){
+					//Vérifier que le login qui est l'identifiant d'un adherent n'existe pas déja: recherche avec une méthode de la JPA
+					if(adherentManagers.trouver(request.getParameter("newLogin"))== null){
+						//Vérifier que les mdp sont indentiques
+						if(request.getParameter("mdpconfirm").equals(request.getParameter("mdp"))){
+						
+							
+							//Création d'un objet adherent qu'on remplit avec nos données
+							Adherent adh = new Adherent();
+							
+							//Données obligatoires
+							adh.setIdentifiant(request.getParameter("newLogin"));
+							adh.setMotDePasse(request.getParameter("mdp"));
+							adh.setPrenom(request.getParameter("newPrenom"));
+							adh.setNomDeFamille(request.getParameter("newNom"));
+							adh.setAdresse(request.getParameter("newAdresse"));
+							adh.setCodePostal(request.getParameter("newCodepostal"));
+							adh.setVille(request.getParameter("newVille"));
+							adh.setPays(request.getParameter("newPays"));
+							
+							//Données optionelles
+							if (request.getParameter("newCompAdresse")!=null || request.getParameter("newCompAdresse").equals(" ")){
+								adh.setComplementAdresse(request.getParameter("newCompAdresse"));
+							}
+							//Puis appel d'une méthode dans le jpa pour ajouter un adhérent
+							adherentManagers.creer(adh);
+						}else{
+							request.setAttribute("Erreur", "Le mot de passe de confirmation n'est pas indentique au mdp");
+						}
+					}else{
+						request.setAttribute("Erreur", "Le login est déja utilisé");
+					}
+			}else{
+				request.setAttribute("Erreur", "Veuillez remplir tout les champs");
+			}
 		}
 		//Cas on annule le création d'un compte
 		//Cas on supprime les commandes
@@ -142,7 +176,8 @@ public class Action extends HttpServlet {
 			//Bloquer accées direct jsp OK
 			//Bouton annuler dans crée compte OK
 		//JPA: mise en place de la structure OK
-		//TODO:Compeleter code JPA créer compte
+		//TODO:Compeleter code JPA créer compte: rajouter tyoe password + complément adresse
+		//TODO:Implementer les méthodes jpa
 		//TODO:Test HttpUnit optionel
 		//TODO:Css optionel
 		
