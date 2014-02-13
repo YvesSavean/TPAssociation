@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import Bean.Adherent;
+import Bean.Commande;
 
 public class AdherentEntityManager {
 	private EntityManagerFactory emf;
@@ -42,6 +43,16 @@ public class AdherentEntityManager {
 	public List<Adherent> ChercherAdherents() {
 		/* ce n'est pas du SQL mais du HQL d'Hibernate */
 		Query query = em.createQuery("from Adherent ");
+		return query.getResultList();
+	}
+	
+	public List<Commande> ChercherCommandes(Adherent lAdherent){
+		Query query= em.createQuery("from Commande where id ="+lAdherent.getIdentifiant()+"");
+		return query.getResultList();
+	}
+	
+	public List<Commande> ChercherCommandes(String id){
+		Query query= em.createQuery("from Commande where id ="+id+"");
 		return query.getResultList();
 	}
 
