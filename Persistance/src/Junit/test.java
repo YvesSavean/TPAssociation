@@ -1,12 +1,13 @@
-package EntityManager;
+package Junit;
 import Bean.Adherent;
+import EntityManager.AdherentEntityManager;
 
 
 public class test {
 	public static void main(String args[]){
 		AdherentEntityManager aem= new AdherentEntityManager();
-		//Adherent lAdherent = new Adherent("id","mdp","yves","Savean","155 Rue Général Bual","","44000","Nantes","France");
-		//aem.creer(lAdherent);
+		Adherent lAdherent = new Adherent("id","mdp","yves","Savean","155 Rue Général Bual","","44000","Nantes","France");
+		aem.creer(lAdherent);
 		for(Adherent unAdherent : aem.ChercherAdherents()){
 			System.out.println(unAdherent.getNomDeFamille());
 		}

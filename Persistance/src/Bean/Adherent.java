@@ -34,11 +34,11 @@ public class Adherent {
 	@Column(name="PRENOM")
 	private String prenom;
 	
-	@Size(min=1, max=50)
+	@Size(min=0, max=50)
 	@Column(name="ADRESSE")
 	private String Adresse;
 	
-	@Size(min=1, max=50)
+	@Size(min=0, max=50)
 	@Column(name="COMPLEMENTADRESSE")
 	private String complementAdresse;
 	
