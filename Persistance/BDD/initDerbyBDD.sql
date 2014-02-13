@@ -38,6 +38,7 @@ create table ARTICLE(
     CODE varchar(10),
     NOM varchar(30),
     PRIX numeric,
+    STOCK int,
     constraint ARTICLE_PK primary key (CODE)
 );
 
@@ -71,13 +72,6 @@ create table CATALOGUE_ARTICLE(
     constraint CATALOGUE_ARTICLE_FK2 foreign key (CODE) references ARTICLE
 );
 
-create table ARTICLE_STOCK(
-    CODE varchar(10),
-    NOMBREDISPONIBLE int,
-    constraint ARTICLE_STOCK_PK primary key (CODE),
-    constraint ARTICLE_STOCK_FK foreign key (CODE) references ARTICLE
-);
-
 /* Données de test */
 insert into ADHERENT values('alan', 'alan', 'lb', 'alan', '155 Rue Général Buat', '', '44000', 'Nantes', 'France');
 insert into ADHERENT values('yves', 'yves', 'la', 'yves', '212 Rue Joffre', '', '44000', 'Nantes', 'France');
@@ -87,23 +81,18 @@ insert into ADHERENT values('leo', 'alan', 'ld', 'leo', '1 Rue Camelia', '', '44
 
 insert into CATALOGUE values('Divers');
 
-insert into ARTICLE values('aq', 'Aquarium', 230.00);
-insert into ARTICLE values('ec', 'Ecran LG', 270.00);
-insert into ARTICLE values('pc', 'PC DELL', 100.00);
-insert into ARTICLE values('po', 'Portable Sony', 500.00);
-insert into ARTICLE values('ba', 'Bateau Leader', 2000.00);
+insert into ARTICLE values('aq', 'Aquarium', 230.00, 3);
+insert into ARTICLE values('ec', 'Ecran LG', 270.00, 1);
+insert into ARTICLE values('pc', 'PC DELL', 100.00, 4);
+insert into ARTICLE values('po', 'Portable Sony', 500.00, 2);
+insert into ARTICLE values('ba', 'Bateau Leader', 2000.00, 3);
+insert into ARTICLE values('ca', 'Camera Canon', 150.22, 0);
 
 insert into CATALOGUE_ARTICLE values('Divers', 'aq');
 insert into CATALOGUE_ARTICLE values('Divers', 'ec');
 insert into CATALOGUE_ARTICLE values('Divers', 'pc');
 insert into CATALOGUE_ARTICLE values('Divers', 'po');
 insert into CATALOGUE_ARTICLE values('Divers', 'ba');
-
-insert into ARTICLE_STOCK values('aq', 3);
-insert into ARTICLE_STOCK values('ec', 1);
-insert into ARTICLE_STOCK values('pc', 4);
-insert into ARTICLE_STOCK values('po', 2);
-insert into ARTICLE_STOCK values('ba', 3);
 
 insert into COMMANDE values(1, '2013-01-01', 'alan'); /*yyyy-mm-dd*/
 insert into COMMANDE values(2, '2013-01-10', 'alan');
@@ -117,10 +106,8 @@ insert into COMMANDE_ARTICLE values(2, 'po', 1);
 insert into COMMANDE_ARTICLE values(2, 'ec', 1);
 insert into COMMANDE_ARTICLE values(2, 'pc', 1);
 
-
 select * from ADHERENT;
 select * from ARTICLE;
-select * from ARTICLE_STOCK;
 select * from CATALOGUE;
 select * from CATALOGUE_ARTICLE;
 select * from COMMANDE;

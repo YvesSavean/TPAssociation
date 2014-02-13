@@ -21,7 +21,10 @@
    						<td>${article.code}</td>
    						<td>${article.nom}</td>
    						<td>${article.prix}</td>
+   						<td>${article.stock}</td>
+   						<c:if test="${article.stock!=0}">
    						<td><a href='?addArticle=${article.code}'>Commander</a></td>
+   						</c:if>
 					</tr>
 				</c:forEach>
 			</c:when>

@@ -22,7 +22,11 @@ public class Article {
 	
 	@NotBlank @Size(min=1, max=30)
 	@Column(name="PRIX")
-	private int prix;
+	private float prix;
+
+	@NotBlank @Size(min=1, max=30)
+	@Column(name="STOCK")
+	private int stock;
 
 	public String getCode() {
 		return code;
@@ -40,12 +44,20 @@ public class Article {
 		this.nom = nom;
 	}
 
-	public int getPrix() {
+	public float getPrix() {
 		return prix;
 	}
 
-	public void setPrix(int prix) {
+	public void setPrix(float prix) {
 		this.prix = prix;
+	}
+	
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public Article() {
