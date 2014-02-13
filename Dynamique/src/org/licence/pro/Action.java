@@ -1,6 +1,8 @@
 package org.licence.pro;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Bean.Adherent;
+import Bean.Article;
 import EntityManager.AdherentEntityManager;
+import EntityManager.ArticleEntityManager;
 
 /**
  * Servlet implementation class Action
@@ -18,6 +22,7 @@ public class Action extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/**Listes des objets pour l'acces aux données*/
 	private AdherentEntityManager adherentManagers;
+	private ArticleEntityManager articleManagers;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +36,7 @@ public class Action extends HttpServlet {
      */
     public void init(){
     	adherentManagers = new AdherentEntityManager();
+    	articleManagers = new ArticleEntityManager();
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -99,10 +105,14 @@ public class Action extends HttpServlet {
 			}
 			if (request.getAttribute("Page").equals("/articles")){
 				System.out.println("Liste Articles");
-				//TODO:Crée une liste de type commandes_articles
-				//TODO:En utilisant la persistance appeller une méthode qui renvoit tout les articles disponibles
-				//TODO:On enregistre dans une liste
-				//TODO:Si pas null alors on enregistre cette liste dans un attribut
+				//Crée une liste de type commandes_articles
+				List<Article> articles = new ArrayList<Article>();
+				//En utilisant la persistance appeller une méthode qui renvoit tout les articles disponibles
+				articles = articleManagers.ChercherAdherents();
+				//Si pas null ou vide alors on enregistre cette liste dans un attribut
+				if(articles != null && !articles.isEmpty()){
+					request.setAttribute("articles", articles);
+				}	
 			}
 		}
 		
@@ -119,8 +129,6 @@ public class Action extends HttpServlet {
 					if(adherentManagers.trouver(request.getParameter("newLogin"))== null){
 						//Vérifier que les mdp sont indentiques
 						if(request.getParameter("mdpconfirm").equals(request.getParameter("mdp"))){
-						
-							
 							//Création d'un objet adherent qu'on remplit avec nos données
 							Adherent adh = new Adherent();
 							
@@ -176,7 +184,7 @@ public class Action extends HttpServlet {
 			//Bloquer accées direct jsp OK
 			//Bouton annuler dans crée compte OK
 		//JPA: mise en place de la structure OK
-		//TODO:Compeleter code JPA créer compte: rajouter tyoe password + complément adresse
+		//Completer code JPA créer compte: rajouter tyoe password + complément adresse
 		//TODO:Implementer les méthodes jpa
 		//TODO:Test HttpUnit optionel
 		//TODO:Css optionel

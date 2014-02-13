@@ -16,7 +16,7 @@ public class ArticleEntityManager {
 	private EntityTransaction t;
 	
 	public  ArticleEntityManager(){
-		emf = Persistence.createEntityManagerFactory("Persistence");
+		emf = Persistence.createEntityManagerFactory("Persistance");
 		em = (EntityManager) emf.createEntityManager();
 		t = em.getTransaction();
 	}
@@ -50,7 +50,7 @@ public class ArticleEntityManager {
 	}
 	
 	public List<Article> ChercherAdherents(){
-		Query query = em.createQuery("select * from ARTICLE");
+		Query query = em.createQuery("from Article");
 		return query.getResultList();
 	}
 	

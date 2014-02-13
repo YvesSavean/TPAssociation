@@ -116,3 +116,12 @@ insert into COMMANDE_ARTICLE values(1, 'ba', 1);
 insert into COMMANDE_ARTICLE values(2, 'po', 1);
 insert into COMMANDE_ARTICLE values(2, 'ec', 1);
 insert into COMMANDE_ARTICLE values(2, 'pc', 1);
+
+
+select * from ADHERENT;
+select * from ARTICLE;
+select * from ARTICLE_STOCK;
+select * from CATALOGUE;
+select * from CATALOGUE_ARTICLE;
+select * from COMMANDE;
+select * from COMMANDE_ARTICLE;
