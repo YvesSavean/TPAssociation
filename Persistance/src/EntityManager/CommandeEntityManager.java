@@ -59,4 +59,9 @@ public class CommandeEntityManager {
 		return query.getResultList();
 	}
 
+	public void close() {
+		em.close();
+		emf.close();
+	}
+
 }
