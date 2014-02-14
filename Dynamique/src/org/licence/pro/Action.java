@@ -178,13 +178,40 @@ public class Action extends HttpServlet {
 		//Cas on supprime les commandes
 		if(request.getParameter("annulerCmd")!=null){
 			System.out.println("Annuler commande");
-			//TODO: Supression de la liste des commandes pour un adhérent donnée renvoit une liste de code des articles supprimés
-			//TODO: Maj du stock des articles indiqués en parametre
+			//Liste pour récuperer les codes de tous les articles commandés (nécessaire pour faire la maj du stock
+			List<String> articlesCommandes = new ArrayList<String>();
+			//Recuperer l'ensembles des codes des articles commandés
+			//List<String> articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login"));
+			//Si la liste de commandes n'est pas vide
+			//Si pas null ou vide alors on enregistre cette liste dans un attribut
+			if(articlesCommandes != null && !articlesCommandes.isEmpty()){
+				//Supression de la liste des commandes pour un adhérent donnée renvoit une liste de code des articles supprimés
+				//commandeManager.viderCommande(request.getSession(true).getAttribute("login"));
+				//Maj du stock des articles indiqués en parametres
+				for (String code: articlesCommandes){
+					Article a = articleManagers.trouver(code);
+					//articleManagers.incrementeStock(code);
+				}
+			}
+			
 		}
 		//Cas on rajoute une commande
 		if(request.getParameter("addCmd")!=null){
 			System.out.println("Ajout article dans commande");
-			//TODO:Vérifier que le stock articles n'est pas null: methode checkArticle(int idarticle)
+			//Article concerné
+			Article art = new Article();
+			//Vérifier si l'article choisit existe
+			if(articleManagers.trouver(request.getParameter("addCmd"))!= null){
+				art = articleManagers.trouver(request.getParameter("addCmd"));
+				//Vérifier que le stock articles n'est pas égal à zero
+				if(art.getStock() > 0){
+					//On decremente son stock (appel d'une méthode de jpa)
+					
+					//On rajoute cette article dans la liste des commandes 
+				}
+			}
+			
+			
 			//TODO:Si true : message d'erreur sinon on appelle une méthode addArtcle (id Adehrent, id article) qui rajoute l'article dans la liste des commandes de l'adherent
 		}
 		
@@ -201,9 +228,7 @@ public class Action extends HttpServlet {
 			//Bouton annuler dans crée compte OK
 		//JPA: mise en place de la structure OK
 		//Completer code JPA créer compte: rajouter tyoe password + complément adresse
-		//TODO:Implementer les méthodes jpa
-		//TODO:Test HttpUnit optionel
-		//TODO:Css optionel
+		//Implementer les méthodes jpa
 		
 	}
 	
