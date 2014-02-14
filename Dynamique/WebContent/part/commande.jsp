@@ -14,17 +14,17 @@
 		<!-- Si on a l'attribut commande si on a pour ce login des commandes -->
 		<c:choose>
 			<%-- Pas encore testé peut etre foireux --%>
-			<c:when test="${!empty commandes}">
-				<c:forEach items="${commandes}" var="commande" varStatus="status">
+			<c:when test="${!empty articlesCommandes}">
+				<c:forEach items="${articlesCommandes}" var="articlecommande" varStatus="status">
 					<tr>
-   						<td>${commande.code}</td>
-   						<td>${commande.nom}</td>
-   						<td>${commande.prix}</td>
+   						<td>${articlecommande.code}</td>
+   						<td>${articlecommande.nom}</td>
+   						<td>${articlecommande.prix}</td>
 					</tr>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
-				<p>Vous n'avez commandés aucun articles!</p>
+				<p>Vous n'avez commandé aucun articles!</p>
 			</c:otherwise>
 		</c:choose>
 	</Table>

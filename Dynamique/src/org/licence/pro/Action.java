@@ -105,12 +105,19 @@ public class Action extends HttpServlet {
 				List<Article> articles = new ArrayList<Article>();
 				//En utilisant la persistance appeller une méthode qui renvoit pour un login adhérent l'ensemble des codes articles commandés
 				//articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login");
-				//Pour chaque id d'article récuperer trouver en indqiaunt  avec son code le prix et le nom avec l'appel d'une méthode de jpa
+				//Test
+				articlesCommandes.add("aq");
+				articlesCommandes.add("ec");
+				//Pour chaque code d'article récuperer trouver son code le prix et le nom avec l'appel d'une méthode de jpa
 				for (String code: articlesCommandes){
-					articleManagers.trouver(code);
+					Article a = articleManagers.trouver(code);
+					//On enregistre dans une liste
+					articles.add(a);
 				}
-				//TODO: On enregistre dans une liste
-				//TODO:Si pas null alors on enregistre cette liste dans un attribut
+				//Si pas null alors on enregistre cette liste dans un attribut
+				if(articles != null && !articles.isEmpty()){
+					request.setAttribute("articlesCommandes", articles);
+				}	
 			}
 			if (request.getAttribute("Page").equals("/articles")){
 				System.out.println("Liste Articles");
