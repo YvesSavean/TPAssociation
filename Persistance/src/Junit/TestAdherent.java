@@ -277,6 +277,9 @@ public class TestAdherent {
 	}
 	//TODO: une methode dans ArticleEntityManager qui décremente la valeur stock
 	//TODO: une methode dans ArticleEntityManager qui incremente la valeur stock
-	//TODO: Supression de tout les élements d'une commande puis de la commande
-	//TODO: Ajout du'n article dans une commande créer la commande si besoin (si la date et l'adherent n'existe pas dans une des commandes)
+	//TODO: méthode qui renvoit pour un id adhérent l'ensemble des id des articles commandés CommandeEntityManager.listeCommande(String login);
+	//TODO: Supression de tout les élements de chaque commande (Table Commande Article) puis des commandes (Table commande) pour l'adherent précis: 
+	//CommandeEntityManager.viderCommande(String login);
+	//TODO: Ajout d'un article dans une commande créer la commande si besoin (si la date et l'adherent n'existe pas dans une des commandes):
+	//CommandeEntityManager.ajoutArticleCommande(String codeArticle)
 }
