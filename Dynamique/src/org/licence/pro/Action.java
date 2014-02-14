@@ -182,14 +182,12 @@ public class Action extends HttpServlet {
 			List<String> articlesCommandes = new ArrayList<String>();
 			//Recuperer l'ensembles des codes des articles commandés
 			//List<String> articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login"));
-			//Si la liste de commandes n'est pas vide
-			//Si pas null ou vide alors on enregistre cette liste dans un attribut
+			//Si la liste de commandes n'est pas vide ou null
 			if(articlesCommandes != null && !articlesCommandes.isEmpty()){
-				//Supression de la liste des commandes pour un adhérent donnée renvoit une liste de code des articles supprimés
+				//Supression de la liste des commandes pour un adhérent donnée
 				//commandeManager.viderCommande(request.getSession(true).getAttribute("login"));
 				//Maj du stock des articles indiqués en parametres
 				for (String code: articlesCommandes){
-					Article a = articleManagers.trouver(code);
 					//articleManagers.incrementeStock(code);
 				}
 			}
@@ -206,8 +204,11 @@ public class Action extends HttpServlet {
 				//Vérifier que le stock articles n'est pas égal à zero
 				if(art.getStock() > 0){
 					//On decremente son stock (appel d'une méthode de jpa)
-					
+					//articleManagers.decrementeStock(request.getParameter("addCmd"));
 					//On rajoute cette article dans la liste des commandes 
+					//commandeManager.ajoutArticleCommande(request.getParameter("addCmd"));
+				}else{
+					request.setAttribute("Erreur", "L'article n'est plus disponible");
 				}
 			}
 			
