@@ -18,7 +18,7 @@ public class Commande {
 	private Date dateCommande;
 	
 	@ManyToOne
-	@JoinColumn(name = "ADHERENT")
+	@JoinColumn(name = "IDENTIFIANT")
 	private Adherent lAdherent;
 	
 	public Commande(Integer id, Date dateCommande, Adherent lAdherent) {

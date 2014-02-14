@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Bean.Adherent;
 import Bean.Article;
+import Bean.CommandeArticle;
 import EntityManager.AdherentEntityManager;
 import EntityManager.ArticleEntityManager;
 
@@ -23,6 +24,7 @@ public class Action extends HttpServlet {
 	/**Listes des objets pour l'acces aux données*/
 	private AdherentEntityManager adherentManagers;
 	private ArticleEntityManager articleManagers;
+	//private CommandeEntityManager commandeManager;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -97,11 +99,25 @@ public class Action extends HttpServlet {
 		if(request.getAttribute("Page")!= null){
 			if (request.getAttribute("Page").equals("/commande")){
 				System.out.println("Liste Commande");
-				//TODO:Crée une liste de type commandes_articles
-				//TODO:En utilisant la persistance appeller une méthode qui renvoit pour un id adhérent l'ensemble des articles commandés
-				//TODO:Pour chaque id d'article récuperer trouver son nom et prenom avec l'appel d'une méthode de jpa
-				//TODO: On enregistre dans une liste
-				//TODO:Si pas null alors on enregistre cette liste dans un attribut
+				//Liste pour récuperer les codes de tous les articles commandés
+				List<String> articlesCommandes = new ArrayList<String>();
+				//Liste pour récuperer l'ensemble des articles commandés
+				List<Article> articles = new ArrayList<Article>();
+				//En utilisant la persistance appeller une méthode qui renvoit pour un login adhérent l'ensemble des codes articles commandés
+				//articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login");
+				//Test
+				articlesCommandes.add("aq");
+				articlesCommandes.add("ec");
+				//Pour chaque code d'article récuperer trouver son code le prix et le nom avec l'appel d'une méthode de jpa
+				for (String code: articlesCommandes){
+					Article a = articleManagers.trouver(code);
+					//On enregistre dans une liste
+					articles.add(a);
+				}
+				//Si pas null alors on enregistre cette liste dans un attribut
+				if(articles != null && !articles.isEmpty()){
+					request.setAttribute("articlesCommandes", articles);
+				}	
 			}
 			if (request.getAttribute("Page").equals("/articles")){
 				System.out.println("Liste Articles");
