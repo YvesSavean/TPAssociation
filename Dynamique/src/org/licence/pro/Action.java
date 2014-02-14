@@ -99,11 +99,16 @@ public class Action extends HttpServlet {
 		if(request.getAttribute("Page")!= null){
 			if (request.getAttribute("Page").equals("/commande")){
 				System.out.println("Liste Commande");
+				//Liste pour récuperer les codes de tous les articles commandés
+				List<String> articlesCommandes = new ArrayList<String>();
 				//Liste pour récuperer l'ensemble des articles commandés
 				List<Article> articles = new ArrayList<Article>();
-				//TODO:En utilisant la persistance appeller une méthode qui renvoit pour un id adhérent l'ensemble des id articles commandés
-				//articles = commandeManager.
-				//TODO:Pour chaque id d'article récuperer trouver avec son code, le prix et le nom avec l'appel d'une méthode de jpa
+				//En utilisant la persistance appeller une méthode qui renvoit pour un login adhérent l'ensemble des codes articles commandés
+				//articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login");
+				//Pour chaque id d'article récuperer trouver en indqiaunt  avec son code le prix et le nom avec l'appel d'une méthode de jpa
+				for (String code: articlesCommandes){
+					articleManagers.trouver(code);
+				}
 				//TODO: On enregistre dans une liste
 				//TODO:Si pas null alors on enregistre cette liste dans un attribut
 			}

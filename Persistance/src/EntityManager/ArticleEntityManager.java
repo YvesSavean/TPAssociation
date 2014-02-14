@@ -21,7 +21,7 @@ public class ArticleEntityManager {
 		t = em.getTransaction();
 	}
 	
-	public Article trouver(int id){
+	public Article trouver(String id){
 		return em.find(Article.class, id);
 	}
 	
@@ -54,4 +54,8 @@ public class ArticleEntityManager {
 		return query.getResultList();
 	}
 	
+	public void close() {
+		em.close();
+		emf.close();
+	}
 }
