@@ -20,11 +20,9 @@ public class Article {
 	@Column(name="NOM")
 	private String nom;
 	
-	@NotBlank @Size(min=1, max=30)
 	@Column(name="PRIX")
 	private float prix;
 
-	@NotBlank @Size(min=1, max=30)
 	@Column(name="STOCK")
 	private int stock;
 
