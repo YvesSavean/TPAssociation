@@ -12,6 +12,7 @@ import Bean.Adherent;
 import Bean.Commande;
 import Bean.CommandeArticle;
 import EntityManager.AdherentEntityManager;
+import EntityManager.ArticleEntityManager;
 import EntityManager.CommandeEntityManager;
 
 public class TestCommandeEntityManager {
@@ -20,13 +21,17 @@ public class TestCommandeEntityManager {
 	public void testInsertionCommande() {
 		// pour que le test fonctionne, cet adhérent ne doit pas se trouver dans
 		// la table Adherent
-
+		CommandeEntityManager cem = new CommandeEntityManager();
+		ArticleEntityManager aem = new ArticleEntityManager();
+		
 		// un adhérent
 		Adherent adh = new Adherent();
 		adh.setIdentifiant("KarlJohn");
 		adh.setNomDeFamille("Karl");
 		adh.setMotDePasse("Karl");
 		adh.setPrenom("John");
+		
+		
 
 		// insertion d'un adhérent pour l'associer à la commande
 		AdherentEntityManager aee = new AdherentEntityManager();
@@ -37,11 +42,20 @@ public class TestCommandeEntityManager {
 		cmd.setId(4321);
 		cmd.setDateCommande(new Date());
 		cmd.setlAdherent(adh);
+		
+		
+		//une ligne
+		CommandeArticle laLigne = new CommandeArticle();
+		laLigne.setArticle(aem.trouver("aq"));
+		laLigne.setCommande(cmd);
+		laLigne.setQuantiteArticle(3);
+		
+		//ajout de la ligne dans commande
+		cmd.ajoutLigne(laLigne);
 
 		// insertion d'une commande
 		// puis vérif
 		// puis sa suppression
-		CommandeEntityManager cem = new CommandeEntityManager();
 		cem.creer(cmd);
 		assertTrue(cmd == cem.trouver(cmd.getId()));
 		cem.supprimer(cmd);

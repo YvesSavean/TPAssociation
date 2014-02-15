@@ -41,6 +41,10 @@ public class Commande {
 	public void setLesLignesArticles(Map<Integer, CommandeArticle> lesLignesArticles) {
 		this.lesLignesArticles = lesLignesArticles;
 	}
+	
+	public void ajoutLigne(CommandeArticle laLigne){
+		this.lesLignesArticles.put(this.lesLignesArticles.size()+1, laLigne);
+	}
 
 	public Commande() {
 		super();
