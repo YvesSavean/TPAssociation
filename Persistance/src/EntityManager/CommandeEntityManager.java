@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import Bean.Adherent;
 import Bean.Commande;
+import Bean.CommandeArticle;
 
 public class CommandeEntityManager {
 	private EntityManagerFactory emf;
@@ -37,12 +38,18 @@ public class CommandeEntityManager {
 
 	public void supprimer(int id) {
 		t.begin();
+		for(CommandeArticle laLigne : this.trouver(id).getLesLignesArticles().values()){
+			em.persist(laLigne);
+		}
 		em.remove(id);
 		t.commit();
 	}
 
 	public void creer(Commande commande) {
 		t.begin();
+		for(CommandeArticle laLigne : commande.getLesLignesArticles().values()){
+			em.persist(laLigne);
+		}
 		em.persist(commande);
 		t.commit();
 	}
@@ -52,7 +59,7 @@ public class CommandeEntityManager {
 		em.merge(commande);
 		t.commit();
 	}
-
+	
 	public List<Commande> chercherCommandeDunAdherent(Adherent adh) {
 		Query query = em.createQuery("from Commande where lAdherent = " + adh
 				+ "");

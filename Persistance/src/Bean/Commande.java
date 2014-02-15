@@ -1,6 +1,8 @@
 package Bean;
 
 import java.util.Date;
+import java.util.Map;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -21,11 +23,23 @@ public class Commande {
 	@JoinColumn(name = "IDENTIFIANT")
 	private Adherent lAdherent;
 	
+	@OneToMany
+	@MapKeyJoinColumn(name = "COMMANDE_ARICLE")
+	private Map<Integer,CommandeArticle> lesLignesArticles;
+	
 	public Commande(Integer id, Date dateCommande, Adherent lAdherent) {
 		super();
 		this.id = id;
 		this.dateCommande = dateCommande;
 		this.lAdherent = lAdherent;
+	}
+
+	public Map<Integer, CommandeArticle> getLesLignesArticles() {
+		return lesLignesArticles;
+	}
+
+	public void setLesLignesArticles(Map<Integer, CommandeArticle> lesLignesArticles) {
+		this.lesLignesArticles = lesLignesArticles;
 	}
 
 	public Commande() {

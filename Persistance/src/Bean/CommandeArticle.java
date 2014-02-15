@@ -1,16 +1,25 @@
 package Bean;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@IdClass(CommandeArticleId.class)
+@Table(name="COMMANDE_ARTICLE", schema="SONY")
 public class CommandeArticle {
 	//attributs
+	@Id
 	@ManyToOne
 	@JoinColumn(name="ID")
 	private Commande commande;
 	
+	@Id
 	@ManyToOne
 	@JoinColumn(name="CODE")
 	private Article article;
