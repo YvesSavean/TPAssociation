@@ -25,6 +25,6 @@ public void viderCommande(String login){
     //Supression de toutes les commandes (puis des commandes_articles liés) ou le login est égal à celui en parametres
 }
 
-public List<String> listeCommande(String login){
+public List(String) listeCommande(String login){
     //Listes de toutes les codes articles des commandes_articles liés aux commandes où le login est égal à celui en paramètres
 }
