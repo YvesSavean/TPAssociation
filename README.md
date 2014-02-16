@@ -15,7 +15,7 @@ puis new Derby sur eclipse perspective Database Development >
   mdp : sony
   schéma : sony
 
-Les trois méthodes réstantes à faire pour les traitements sur le site dans commandeEntityManager:
+Les trois méthodes restantes à faire pour les traitements sur le site dans commandeEntityManager:
 
 public void ajoutArticleCommande(String codeArticle,String Login){
     //Ajouter un article dans une commande_article mais avant créer la commande si besoin
@@ -26,5 +26,5 @@ public void viderCommande(String login){
 }
 
 public List(String) listeCommande(String login){
-    //Listes de toutes les codes articles des commandes_articles liés aux commandes où le login est égal à celui en paramètres
+    //Listes de tous les codes articles des commandes_articles liés aux commandes où le login est égal à celui en paramètres
 }
