@@ -35,5 +35,43 @@ public class CommandeArticleId implements Serializable {
 	public void setArticle(Article article) {
 		this.article = article;
 	}
+	
+
+    // Must have a hashCode method
+    @Override
+    public int hashCode() {
+        return commande.hashCode() + article.hashCode();
+    }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CommandeArticleId other = (CommandeArticleId) obj;
+        if (commande == null)
+        {
+            if (other.commande != null)
+                return false;
+        }
+        else if (!commande.equals(other.commande))
+            return false;
+        if (article == null)
+        {
+            if (other.article != null)
+                return false;
+        }
+        else if (!article.equals(other.article))
+            return false;
+        return true;
+    }
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }

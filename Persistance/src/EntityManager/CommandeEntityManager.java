@@ -47,10 +47,10 @@ public class CommandeEntityManager {
 
 	public void creer(Commande commande) {
 		t.begin();
+		em.persist(commande);
 		for(CommandeArticle laLigne : commande.getLesLignesArticles().values()){
 			em.persist(laLigne);
 		}
-		em.persist(commande);
 		t.commit();
 	}
 

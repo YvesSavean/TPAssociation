@@ -1,6 +1,7 @@
 package Bean;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.*;
@@ -48,6 +49,8 @@ public class Commande {
 
 	public Commande() {
 		super();
+		lesLignesArticles = new HashMap<Integer,CommandeArticle>();
+		
 	}
 	
 	public Integer getId() {

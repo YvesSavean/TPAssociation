@@ -15,12 +15,10 @@ import javax.validation.constraints.NotNull;
 public class CommandeArticle {
 	//attributs
 	@Id
-	@ManyToOne
 	@JoinColumn(name="ID")
 	private Commande commande;
 	
 	@Id
-	@ManyToOne
 	@JoinColumn(name="CODE")
 	private Article article;
 	
