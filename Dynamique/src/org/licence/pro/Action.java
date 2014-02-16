@@ -14,6 +14,7 @@ import Bean.Article;
 import Bean.CommandeArticle;
 import EntityManager.AdherentEntityManager;
 import EntityManager.ArticleEntityManager;
+import EntityManager.CommandeEntityManager;
 
 /**
  * Servlet implementation class Action
@@ -24,7 +25,7 @@ public class Action extends HttpServlet {
 	/**Listes des objets pour l'acces aux données*/
 	private AdherentEntityManager adherentManagers;
 	private ArticleEntityManager articleManagers;
-	//TODO a activer: private CommandeEntityManager commandeManager;
+	private CommandeEntityManager commandeManager;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +40,7 @@ public class Action extends HttpServlet {
     public void init(){
     	adherentManagers = new AdherentEntityManager();
     	articleManagers = new ArticleEntityManager();
-    	//TODO a activer: commandeManager = new CommandeManager();
+    	commandeManager = new CommandeEntityManager();
     }
     
 	/**
@@ -112,7 +113,7 @@ public class Action extends HttpServlet {
 				List<Article> articles = new ArrayList<Article>();
 				
 				//En utilisant la persistance,on appelle une méthode qui renvoit pour un login adhérent l'ensemble des codes articles commandés
-				//TODO a activer:articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login");
+				//TODO:A activer: articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login");
 				//Test temporaire à virer
 				articlesCommandes.add("aq");
 				articlesCommandes.add("ec");
@@ -197,14 +198,19 @@ public class Action extends HttpServlet {
 			//Liste pour récuperer les codes de tous les articles commandés (nécessaire pour faire la maj du stock)
 			List<String> articlesCommandes = new ArrayList<String>();
 			//Récuperer l'ensembles des codes des articles commandés
-			//TODO a activer:List<String> articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login"));
+			//TODO:A activer:articlesCommandes = commandeManager.listeCommande(request.getSession(true).getAttribute("login"));
 			//Si la liste de commandes n'est pas vide ou null
 			if(articlesCommandes != null && !articlesCommandes.isEmpty()){
 				//Supression de la liste des commandes pour un adhérent donnée
-				//TODO a activer:commandeManager.viderCommande(request.getSession(true).getAttribute("login"));
+				//TODO:A activer:commandeManager.viderCommande(request.getSession(true).getAttribute("login"));
 				//Maj du stock des articles indiqués en parametres
 				for (String code: articlesCommandes){
-					//TODO a activer:articleManagers.incrementeStock(code);
+					//On recherche l'article concerné
+					Article a = articleManagers.trouver(code);
+					//Si on l'a trouvé
+					if (a != null){
+						articleManagers.incrementer(a);
+					}
 				}
 			}
 			
@@ -221,7 +227,7 @@ public class Action extends HttpServlet {
 				//Vérifier que le stock articles n'est pas égal à zero
 				if(art.getStock() > 0){
 					//On decremente son stock (appel d'une méthode de jpa)
-					//TODO a activer:articleManagers.decrementeStock(request.getParameter("addCmd"));
+					articleManagers.décrementer(art);
 					//On rajoute cette article dans la liste des commandes 
 					//TODO a activer:commandeManager.ajoutArticleCommande(request.getParameter("addCmd"));
 				}else{
