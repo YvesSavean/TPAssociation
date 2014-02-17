@@ -36,7 +36,7 @@ public class Traitement {
 		List<Commande> listeDeSesCommandes = cem
 				.chercherCommandeDunAdherent(adh);
 		// Si il a déjà passé des commandes
-		if (listeDeSesCommandes != null) {
+		if (listeDeSesCommandes != null && !listeDeSesCommandes.isEmpty()) {
 			// on récupère la commande managed
 			// le premier de la liste, car plusieurs commandes ne sont pas
 			// gérées dans le projet Dynamique
@@ -64,7 +64,7 @@ public class Traitement {
 		Map<Integer, CommandeArticle> lesLignesArticles = new HashMap<Integer, CommandeArticle>();
 		lesLignesArticles.put(1, laLigne); // il n'y a qu'une ligne
 		// Si il a déjà passé des commandes
-		if (listeDeSesCommandes != null) {
+		if (listeDeSesCommandes != null && !listeDeSesCommandes.isEmpty()) {
 			// On ajoute la ligne
 			for (CommandeArticle ligne : lesLignesArticles.values()) {
 				caem.creer(ligne);

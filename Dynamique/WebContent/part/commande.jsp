@@ -13,7 +13,6 @@
 		</tr>
 		<!-- Si on a l'attribut commande si on a pour ce login des commandes -->
 		<c:choose>
-			<%-- Pas encore testé peut etre foireux --%>
 			<c:when test="${!empty articlesCommandes}">
 				<c:forEach items="${articlesCommandes}" var="articlecommande" varStatus="status">
 					<tr>

@@ -12,9 +12,8 @@
 			<th>Stock</th>
 			<th></th>
 		</tr>
-		<!-- Si on a l'attribut commande si on a pour ce login des commandes -->
+		<!-- Si on a l'attribut commande,si on a pour ce login des commandes -->
 		<c:choose>
-			<%-- Pas encore testé peut etre foireux --%>
 			<c:when test="${!empty articles}">
 				<c:forEach items="${articles}" var="article" varStatus="status">
 					<tr>

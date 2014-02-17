@@ -12,9 +12,7 @@
 <title>Assoc ENM</title>
 </head>
 <body>
-	<%-- Template de vue--%>
-	<%-- C'est au template de determiner quel portion de page montrer suivant 
-	que l'on est co ou non --%>
+	<%-- Template general pour cahrger la vue--%>
 	
 	<%--Si l'utilisateur est connecté --%>
 	<c:choose>
@@ -24,21 +22,20 @@
 			<jsp:include page="/part/menu.jsp" /> 
 			<%-- On vérifie l'existence d'un parametre page --%>
 			<c:choose>
+				<%-- Si on a pas le parametre: page d'acceuil --%>
 				<c:when test="${empty Page}" >
-					<%-- Si non page d'acceuil --%>
 					<jsp:include page="/part/accueil.jsp" /> 
-					<%-- Si oui on choisit la page indiqué --%>
 				</c:when>
+				<%--  Si on a le parametre: on choisit la page indiqué --%>
   				<c:otherwise>
 					<jsp:include page="/part${Page}.jsp" /> 
-					<%--Chaque partie de template devra vérifier l'existence de certain attribut pour voir si il dispose des données --%>
+					<%--Chaque partie de template vérifie l'existence de certain attribut--%>
 				</c:otherwise>
 			</c:choose>			
 	
 		<%--Si l'utilisateur n'est pas connecté --%>
 		</c:when>
   		<c:otherwise>
-  		
 			<%--Si on a choisit de créer un compte: on affiche la page de création d'un compte --%>
 			<c:choose>
 				<c:when test="${!empty Page && Page == '/newAccount'}">
@@ -52,7 +49,7 @@
 		</c:otherwise>
 	</c:choose>	
 	
-	<%-- Gestion de erreurs: si une erreur existe alors on a affiche une pop-up d'information --%>
+	<%-- Gestion de erreurs: si une erreur existe alors on l'affiche dans une pop-up d'information --%>
 	<c:if test="${!empty Erreur}">
 		<script type="text/javascript">alert("${Erreur}");</script>
 	</c:if>
