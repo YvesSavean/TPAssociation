@@ -26,6 +26,6 @@ public class Service {
 		for(CommandeArticle laLigne : caem.chercherCommandeArticleAdh(laCommande)){
 			caem.supprimer(laLigne);
 		}
-		cem.supprimer(laCommande);
+		cem.supprimer(cem.trouver(laCommande.getId()));
 	}
 }

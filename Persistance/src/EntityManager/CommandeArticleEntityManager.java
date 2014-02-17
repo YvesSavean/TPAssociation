@@ -51,8 +51,8 @@ public class CommandeArticleEntityManager {
 	
 	public List<CommandeArticle> chercherCommandeArticleAdh(
 			Commande cmd) {
-		Query query = em.createQuery("from CommandeArticle where commande = "
-				+ cmd);
+		Query query = em.createQuery("select ca from CommandeArticle ca where ca.Key.commande = :c");
+		query.setParameter("c", cmd.getId());
 		return query.getResultList();
 
 	}
