@@ -45,6 +45,7 @@ public class TestCommandeEntityManager {
 		cmd.setId(6);
 		cmd.setDateCommande(new Date());
 		cmd.setlAdherent(adh);
+		cem.close();
 		
 		
 		//une ligne
@@ -65,7 +66,6 @@ public class TestCommandeEntityManager {
 		Service leService = new Service();
 		leService.Ajout(cmd,lesLignesArticles);
 		leService.supprimer(cmd);
-		cem.close();
 
 		// suppresion de l'adhérent inséré et ferme aee
 		aee.supprimer(adh);
