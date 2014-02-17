@@ -1,6 +1,8 @@
 package EntityManager;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,8 +53,8 @@ public class CommandeArticleEntityManager {
 	
 	public List<CommandeArticle> chercherCommandeArticleAdh(
 			Commande cmd) {
-		Query query = em.createQuery("from CommandeArticle where commande = "
-				+ cmd);
+		Map<Integer,CommandeArticle> lesLignesArticles = new HashMap<Integer,CommandeArticle>();
+		Query query = em.createNativeQuery("select * from COMMANDE_ARTICLE c where id = "+cmd.getId(),CommandeArticle.class);
 		return query.getResultList();
 
 	}
