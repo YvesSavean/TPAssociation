@@ -1,5 +1,6 @@
 package Bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="COMMANDE", schema="SONY")
-public class Commande {
+public class Commande  implements Serializable{
 	
 	@Id
 	@NotNull
@@ -24,8 +25,7 @@ public class Commande {
 	@JoinColumn(name = "IDENTIFIANT")
 	private Adherent lAdherent;
 	
-	@OneToMany
-	@MapKeyJoinColumn(name = "COMMANDE_ARICLE")
+	@CollectionTable(name="COMMANDE_ARTICLE",joinColumns=@JoinColumn(name="IDENTIFIANT")) 
 	private Map<Integer,CommandeArticle> lesLignesArticles;
 	
 	public Commande(Integer id, Date dateCommande, Adherent lAdherent) {

@@ -15,32 +15,30 @@ import javax.validation.constraints.NotNull;
 public class CommandeArticle {
 	//attributs
 	@Id
-	@JoinColumn(name="ID")
-	private Commande commande;
+	private Integer commande;
 	
 	@Id
-	@JoinColumn(name="CODE")
-	private Article article;
+	private String article;
 	
 	@Column(name="QUANTITE")
 	@NotNull
 	private int quantiteArticle;
 
 	//getters et setters
-	public Commande getCommande() {
+	public Integer getCommande() {
 		return commande;
 	}
 
-	public void setCommande(Commande commande) {
+	public void setCommande(Integer commande) {
 		this.commande = commande;
 	}
 
-	public Article getArticle() {
+	public String getArticle() {
 		return article;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public void setArticle(String string) {
+		this.article = string;
 	}
 
 	public int getQuantiteArticle() {
@@ -56,7 +54,7 @@ public class CommandeArticle {
 		super();
 	}
 
-	public CommandeArticle(Commande commande, Article article,
+	public CommandeArticle(Integer commande, String article,
 			int quantiteArticle) {
 		super();
 		this.commande = commande;

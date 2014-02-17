@@ -2,37 +2,43 @@ package Bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+
 public class CommandeArticleId implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3008166735944175797L;
-	private Commande commande;
-	private Article article;
+	
+	@Column(name="ID")
+	private Integer commande;
+	
+	@Column(name="CODE")
+	private String article;
 
 	public CommandeArticleId() {
 
 	}
 
-	public CommandeArticleId(Commande laCommande, Article lArticle) {
+	public CommandeArticleId(Integer laCommande, String lArticle) {
 		commande = laCommande;
 		article = lArticle;
 	}
 
-	public Commande getCommande() {
+	public Integer getCommande() {
 		return commande;
 	}
 
-	public void setCommande(Commande commande) {
+	public void setCommande(Integer commande) {
 		this.commande = commande;
 	}
 
-	public Article getArticle() {
+	public String getArticle() {
 		return article;
 	}
 
-	public void setArticle(Article article) {
+	public void setArticle(String article) {
 		this.article = article;
 	}
 	
@@ -40,7 +46,7 @@ public class CommandeArticleId implements Serializable {
     // Must have a hashCode method
     @Override
     public int hashCode() {
-        return commande.hashCode() + article.hashCode();
+        return commande + (Integer)article.hashCode();
     }
     
     @Override

@@ -46,8 +46,8 @@ public class TestCommandeEntityManager {
 		
 		//une ligne
 		CommandeArticle laLigne = new CommandeArticle();
-		laLigne.setArticle(aem.trouver("aq"));
-		laLigne.setCommande(cmd);
+		laLigne.setArticle(aem.trouver("aq").getCode());
+		laLigne.setCommande(cmd.getId());
 		laLigne.setQuantiteArticle(3);
 		
 		//ajout de la ligne dans commande
