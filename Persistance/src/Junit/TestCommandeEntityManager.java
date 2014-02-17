@@ -4,16 +4,20 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 import Bean.Adherent;
 import Bean.Commande;
 import Bean.CommandeArticle;
+import Bean.CommandeArticleId;
 import EntityManager.AdherentEntityManager;
 import EntityManager.ArticleEntityManager;
 import EntityManager.CommandeEntityManager;
+import Service.AjoutCommande;
 
 public class TestCommandeEntityManager {
 
@@ -39,25 +43,28 @@ public class TestCommandeEntityManager {
 
 		// une commande
 		Commande cmd = new Commande();
-		cmd.setId(4321);
+		cmd.setId(6);
 		cmd.setDateCommande(new Date());
 		cmd.setlAdherent(adh);
 		
 		
 		//une ligne
 		CommandeArticle laLigne = new CommandeArticle();
-		laLigne.setArticle(aem.trouver("aq").getCode());
-		laLigne.setCommande(cmd.getId());
+		CommandeArticleId laKey = new CommandeArticleId();
+		laKey.setArticle(aem.trouver("aq").getCode());
+		laKey.setCommande(cmd.getId());
+		laLigne.setKey(laKey);
 		laLigne.setQuantiteArticle(3);
 		
 		//ajout de la ligne dans commande
-		cmd.ajoutLigne(laLigne);
+		 Map<Integer,CommandeArticle> lesLignesArticles = new HashMap<Integer,CommandeArticle>();
+		 lesLignesArticles.put(1, laLigne);
 
 		// insertion d'une commande
 		// puis vérif
 		// puis sa suppression
-		cem.creer(cmd);
-		assertTrue(cmd == cem.trouver(cmd.getId()));
+		AjoutCommande ajout = new AjoutCommande();
+		ajout.Ajout(cmd,lesLignesArticles);
 		cem.supprimer(cmd);
 		cem.close();
 

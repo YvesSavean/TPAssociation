@@ -38,9 +38,6 @@ public class CommandeEntityManager {
 
 	public void supprimer(int id) {
 		t.begin();
-		for(CommandeArticle laLigne : this.trouver(id).getLesLignesArticles().values()){
-			em.persist(laLigne);
-		}
 		em.remove(id);
 		t.commit();
 	}
@@ -48,9 +45,6 @@ public class CommandeEntityManager {
 	public void creer(Commande commande) {
 		t.begin();
 		em.persist(commande);
-		for(CommandeArticle laLigne : commande.getLesLignesArticles().values()){
-			em.persist(laLigne);
-		}
 		t.commit();
 	}
 

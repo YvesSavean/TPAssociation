@@ -1,24 +1,20 @@
 package Bean;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-public class CommandeArticleId implements Serializable {
+@Embeddable 
+public class CommandeArticleId implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3008166735944175797L;
-	
 	@Column(name="ID")
 	private Integer commande;
 	
 	@Column(name="CODE")
 	private String article;
 
+	
 	public CommandeArticleId() {
-
 	}
 
 	public CommandeArticleId(Integer laCommande, String lArticle) {
@@ -76,8 +72,5 @@ public class CommandeArticleId implements Serializable {
         return true;
     }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 }

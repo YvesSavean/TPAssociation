@@ -1,16 +1,13 @@
 package Bean;
-
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="COMMANDE", schema="SONY")
-public class Commande  implements Serializable{
+public class Commande{
 	
 	@Id
 	@NotNull
@@ -25,32 +22,16 @@ public class Commande  implements Serializable{
 	@JoinColumn(name = "IDENTIFIANT")
 	private Adherent lAdherent;
 	
-	@CollectionTable(name="COMMANDE_ARTICLE",joinColumns=@JoinColumn(name="IDENTIFIANT")) 
-	private Map<Integer,CommandeArticle> lesLignesArticles;
+	
+	public Commande(){
+		super();
+	}
 	
 	public Commande(Integer id, Date dateCommande, Adherent lAdherent) {
 		super();
 		this.id = id;
 		this.dateCommande = dateCommande;
 		this.lAdherent = lAdherent;
-	}
-
-	public Map<Integer, CommandeArticle> getLesLignesArticles() {
-		return lesLignesArticles;
-	}
-
-	public void setLesLignesArticles(Map<Integer, CommandeArticle> lesLignesArticles) {
-		this.lesLignesArticles = lesLignesArticles;
-	}
-	
-	public void ajoutLigne(CommandeArticle laLigne){
-		this.lesLignesArticles.put(this.lesLignesArticles.size()+1, laLigne);
-	}
-
-	public Commande() {
-		super();
-		lesLignesArticles = new HashMap<Integer,CommandeArticle>();
-		
 	}
 	
 	public Integer getId() {
