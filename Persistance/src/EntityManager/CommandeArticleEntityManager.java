@@ -42,14 +42,6 @@ public class CommandeArticleEntityManager {
 		em.merge(ca);
 		t.commit();
 	}
-
-	public List<CommandeArticle> chercherCommandeArticleAdh(Adherent adh,
-			Commande cmd) {
-		Query query = em.createQuery("from CommandeArticle where commande = "
-				+ cmd + " and adherent = " + adh + "");
-		return query.getResultList();
-
-	}
 	
 	public List<CommandeArticle> chercherCommandeArticleAdh(
 			Commande cmd) {		
