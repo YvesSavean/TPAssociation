@@ -29,6 +29,7 @@ public class Service {
 
 		caem.close();
 		cem.supprimer(cem.trouver(laCommande.getId()));
+		cem.close();
 
 	}
 }
