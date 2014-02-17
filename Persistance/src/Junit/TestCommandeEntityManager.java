@@ -1,15 +1,11 @@
 package Junit;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.junit.Test;
-
 import Bean.Adherent;
 import Bean.Commande;
 import Bean.CommandeArticle;
@@ -17,8 +13,7 @@ import Bean.CommandeArticleId;
 import EntityManager.AdherentEntityManager;
 import EntityManager.ArticleEntityManager;
 import EntityManager.CommandeEntityManager;
-import Service.AjoutCommande;
-
+import Service.Service;
 public class TestCommandeEntityManager {
 
 	@Test
@@ -63,9 +58,9 @@ public class TestCommandeEntityManager {
 		// insertion d'une commande
 		// puis vérif
 		// puis sa suppression
-		AjoutCommande ajout = new AjoutCommande();
-		ajout.Ajout(cmd,lesLignesArticles);
-		cem.supprimer(cmd);
+		Service leService = new Service();
+		leService.Ajout(cmd,lesLignesArticles);
+		leService.supprimer(cmd);
 		cem.close();
 
 		// suppresion de l'adhérent inséré et ferme aee
