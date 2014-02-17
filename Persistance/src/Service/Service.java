@@ -26,15 +26,9 @@ public class Service {
 		for(CommandeArticle laLigne : caem.chercherCommandeArticleAdh(laCommande)){
 			caem.supprimer(laLigne);
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		caem.close();
-		cem.close();
-=======
 		cem.supprimer(cem.trouver(laCommande.getId()));
->>>>>>> e3118d903b02a1b403fe033751f9c77d7067a22a
-=======
-		cem.supprimer(cem.trouver(laCommande.getId()));
->>>>>>> e3118d903b02a1b403fe033751f9c77d7067a22a
+
 	}
 }

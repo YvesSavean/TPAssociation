@@ -52,21 +52,11 @@ public class CommandeArticleEntityManager {
 	}
 	
 	public List<CommandeArticle> chercherCommandeArticleAdh(
-			Commande cmd) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		Map<Integer,CommandeArticle> lesLignesArticles = new HashMap<Integer,CommandeArticle>();
-		Query query = em.createNativeQuery("select * from COMMANDE_ARTICLE c where id = "+cmd.getId(),CommandeArticle.class);
-=======
+			Commande cmd) {		
 		Query query = em.createQuery("select ca from CommandeArticle ca where ca.Key.commande = :c");
 		query.setParameter("c", cmd.getId());
->>>>>>> e3118d903b02a1b403fe033751f9c77d7067a22a
-=======
-		Query query = em.createQuery("select ca from CommandeArticle ca where ca.Key.commande = :c");
-		query.setParameter("c", cmd.getId());
->>>>>>> e3118d903b02a1b403fe033751f9c77d7067a22a
+		
 		return query.getResultList();
-
 	}
 	
 	public void close() {
