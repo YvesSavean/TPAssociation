@@ -1,11 +1,15 @@
 package Junit;
 
 import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import org.junit.Test;
+
 import Bean.Adherent;
 import Bean.Commande;
 import Bean.CommandeArticle;
@@ -99,8 +103,8 @@ public class TestCommandeEntityManager {
 		cem.creer(cmd);
 		
 		//appel à la méthode puis vérif
-		cem.chercherCommandeDunAdherent(adh);	
-		assertTrue(listCA == cem.chercherCommandeDunAdherent(adh));
+		List<Commande> listTrouvee = cem.chercherCommandeDunAdherent(adh);	
+		assertEquals(listCA, listTrouvee);
 		cem.supprimer(cmd);
 		cem.close();
 

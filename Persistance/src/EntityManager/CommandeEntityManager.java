@@ -55,8 +55,8 @@ public class CommandeEntityManager {
 	}
 	
 	public List<Commande> chercherCommandeDunAdherent(Adherent adh) {
-		Query query = em.createQuery("from Commande where lAdherent = " + adh
-				+ "");
+		Query query = em.createQuery("select cm from Commande cm where cm.lAdherent = :a");
+		query.setParameter("a", adh);
 		return query.getResultList();
 	}
 

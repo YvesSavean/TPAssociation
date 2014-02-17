@@ -14,6 +14,7 @@ import org.junit.Test;
 import Bean.Article;
 import Bean.Commande;
 import Bean.CommandeArticle;
+import Bean.CommandeArticleId;
 
 public class TestCommandeArticle {
 	private final static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
@@ -39,8 +40,10 @@ public class TestCommandeArticle {
 
 		//un article de la commande
 		CommandeArticle ca = new CommandeArticle();
-		ca.setCommande(commande);
-		ca.setArticle(null);
+		CommandeArticleId laKey = new CommandeArticleId();
+		laKey.setArticle(null);
+		laKey.setCommande(commande.getId());
+		ca.setKey(laKey);
 		ca.setQuantiteArticle(2);
 		
 		//vérification
@@ -60,8 +63,10 @@ public class TestCommandeArticle {
 
 		//un article de la commande
 		CommandeArticle ca = new CommandeArticle();
-		ca.setCommande(null);
-		ca.setArticle(article);
+		CommandeArticleId laKey = new CommandeArticleId();
+		laKey.setArticle(article.getCode());
+		laKey.setCommande(null);
+		ca.setKey(laKey);
 		ca.setQuantiteArticle(2);
 		
 		//vérification
@@ -86,8 +91,10 @@ public class TestCommandeArticle {
 
 		//un article de la commande
 		CommandeArticle ca = new CommandeArticle();
-		ca.setCommande(commande);
-		ca.setArticle(article);
+		CommandeArticleId laKey = new CommandeArticleId();
+		laKey.setArticle(article.getCode());
+		laKey.setCommande(commande.getId());
+		ca.setKey(laKey);
 		ca.setQuantiteArticle(-1);
 		
 		//vérification
